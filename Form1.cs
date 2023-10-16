@@ -33,6 +33,10 @@ namespace TpSocket
         {
             //Création d'un socket de protocol UDP
             UDPsocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+            //Delai de réception d'un message pour ne pas bloquer l'app
+            UDPsocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 5000);
+
             //Création des points de terminaison
             this.IPedD = new IPEndPoint(IPAddress.Parse(this.IpHostTextBox.Text), int.Parse(this.PortHostTextBox.Text));
             this.IPedE = new IPEndPoint(IPAddress.Parse(this.IpDestTextBox.Text), int.Parse(this.PortDestTextBox.Text));
@@ -62,8 +66,28 @@ namespace TpSocket
             //Permet de receptionner le message 
             EndPoint senderRemote = (EndPoint)IPedD;
             var buffer = new byte[1024];
-            UDPsocket.ReceiveFrom(buffer, buffer.Length,SocketFlags.None, ref senderRemote);
-            //affiche le message dans la textbox
+
+            //Génère une exception qui permet d'annoncer la non connectivité au serveur
+            try
+            {
+                UDPsocket.ReceiveFrom(buffer, buffer.Length, SocketFlags.None, ref senderRemote);
+            }
+            catch (Exception ex)
+            {
+                //Message box erreur
+                string title = "Exception";
+                string message = "Erreur: La connexion au serveur à échoué. \nPour plus de précisions: \n" + ex;
+                MessageBoxButtons buttons = MessageBoxButtons.RetryCancel;
+                DialogResult result = MessageBox.Show(message, title, buttons, MessageBoxIcon.Warning);
+                if (result == DialogResult.Retry)
+                {
+                    //Do nothing
+                }
+                else if(result == DialogResult.Cancel) {
+                    //Do nothing
+                }
+            }
+            //affiche le message réceptionné dans la textbox
             this.ReceiverTextBox.Text += Encoding.ASCII.GetString(buffer, 0, buffer.Length);
         }
 
