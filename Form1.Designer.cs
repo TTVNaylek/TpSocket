@@ -96,7 +96,7 @@ namespace TpSocket
             this.SendButton.Name = "SendButton";
             this.SendButton.Size = new System.Drawing.Size(75, 23);
             this.SendButton.TabIndex = 5;
-            this.SendButton.Text = "Envoyer";
+            this.SendButton.Text = "Send";
             this.SendButton.UseVisualStyleBackColor = true;
             this.SendButton.Click += new System.EventHandler(this.SendButton_Click);
             // 
@@ -106,7 +106,7 @@ namespace TpSocket
             this.ReceiveButton.Name = "ReceiveButton";
             this.ReceiveButton.Size = new System.Drawing.Size(75, 23);
             this.ReceiveButton.TabIndex = 6;
-            this.ReceiveButton.Text = "Recevoir";
+            this.ReceiveButton.Text = "Receive";
             this.ReceiveButton.UseVisualStyleBackColor = true;
             this.ReceiveButton.Click += new System.EventHandler(this.ReceiveButton_Click);
             // 
