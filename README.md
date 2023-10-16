@@ -4,9 +4,7 @@
 ## Features
 
 - Can send message from the first window to the second and vice versa
-![image](https://github.com/TTVNaylek/TpSocket/assets/69121494/8e59615e-2a92-4fbf-a623-ee6bc6f44ccd)
-
-
+![image](https://github.com/TTVNaylek/TpSocket/assets/69121494/3769f38e-4cdf-4ed3-9d3c-52217a37c043)
 
 
 ## Badges
